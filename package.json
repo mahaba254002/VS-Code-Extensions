@@ -1,0 +1,66 @@
+{
+  "name": "terminal-sounds",
+  "displayName": "Terminal Sounds",
+  "description": "🔊 Plays the Aaah! error sound instantly when a terminal command fails",
+  "version": "1.2.0",
+  "publisher": "mahaba",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "terminal",
+    "sound",
+    "audio",
+    "error",
+    "notification"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "terminalSounds.toggle",
+        "title": "Terminal Sounds: Toggle On/Off",
+        "icon": "$(unmute)"
+      },
+      {
+        "command": "terminalSounds.testError",
+        "title": "Terminal Sounds: Test Error Sound"
+      }
+    ],
+    "configuration": {
+      "title": "Terminal Sounds",
+      "properties": {
+        "terminalSounds.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable terminal error sound effects."
+        },
+        "terminalSounds.volume": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Volume level for the error sound (0.0 to 1.0)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npx vsce package --no-dependencies --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.93.0",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.4.0"
+  }
+}
